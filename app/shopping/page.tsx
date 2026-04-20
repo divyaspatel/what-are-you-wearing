@@ -137,23 +137,6 @@ export default function ShoppingPage() {
                       {product.price}
                     </span>
 
-                    {/* Bag status */}
-                    {inBag && bagRating && (
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginTop: 2 }}>
-                        <div
-                          style={{
-                            width: 6,
-                            height: 6,
-                            borderRadius: '50%',
-                            background: bagRating === 'must' ? '#D97A7A' : bagRating === 'fine' ? '#C9B4A3' : '#CFC4BC',
-                          }}
-                        />
-                        <span style={{ fontFamily: 'var(--font-jetbrains-mono, monospace)', fontSize: 8.5, letterSpacing: '0.8px', textTransform: 'uppercase', color: 'var(--ink-muted)' }}>
-                          In your bag · {bagRating}
-                        </span>
-                      </div>
-                    )}
-
                     {/* Actions */}
                     <div style={{ display: 'flex', gap: 6, marginTop: 6 }}>
                       {!inBag && (

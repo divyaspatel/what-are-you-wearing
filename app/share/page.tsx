@@ -133,7 +133,7 @@ export default function SharePage() {
               width: '100%',
               height: 48,
               borderRadius: 999,
-              background: copied ? 'var(--positive)' : 'var(--ink)',
+              background: copied ? 'var(--positive)' : 'var(--accent-deep)',
               color: '#fff',
               border: 'none',
               fontFamily: 'var(--font-inter-tight, sans-serif)',

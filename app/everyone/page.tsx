@@ -114,7 +114,40 @@ function PeopleTab() {
         />
       ))}
 
-      <GroupLabel label="Influencers" />
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
+        <div
+          style={{
+            fontFamily: 'var(--font-jetbrains-mono, monospace)',
+            fontSize: 11,
+            letterSpacing: '1.5px',
+            textTransform: 'uppercase',
+            color: 'var(--ink-muted)',
+          }}
+        >
+          Influencers
+        </div>
+        <button
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 5,
+            padding: '4px 10px',
+            borderRadius: 999,
+            border: '1.5px dashed var(--line)',
+            background: 'transparent',
+            cursor: 'pointer',
+            fontFamily: 'var(--font-inter-tight, sans-serif)',
+            fontSize: 11,
+            fontWeight: 500,
+            color: 'var(--ink-muted)',
+          }}
+        >
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+            <path d="M5 1v8M1 5h8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          </svg>
+          Add Linktree URL
+        </button>
+      </div>
       {influencers.map(p => (
         <PersonRow
           key={p.id}

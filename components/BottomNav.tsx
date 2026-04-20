@@ -61,7 +61,7 @@ export default function BottomNav() {
               background: 'none',
               border: 'none',
               cursor: 'pointer',
-              color: active ? 'var(--accent)' : 'var(--ink-faint)',
+              color: active ? 'var(--accent)' : 'var(--ink)',
               transition: 'color 0.15s',
               position: 'relative',
             }}

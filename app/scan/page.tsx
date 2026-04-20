@@ -264,7 +264,7 @@ export default function ScanPage() {
             width: '100%',
             height: 54,
             borderRadius: 999,
-            background: phase === 'idle' ? 'var(--ink)' : 'var(--line)',
+            background: phase === 'idle' ? 'var(--accent-deep)' : 'var(--line)',
             color: phase === 'idle' ? '#FBF6F2' : 'var(--ink-muted)',
             border: 'none',
             fontFamily: 'var(--font-inter-tight, sans-serif)',

@@ -148,7 +148,7 @@ export default function LoginPage() {
           width: '100%',
           height: 50,
           borderRadius: 999,
-          background: 'var(--ink)',
+          background: 'var(--accent-deep)',
           color: '#FBF6F2',
           border: 'none',
           fontFamily: 'var(--font-inter-tight, sans-serif)',

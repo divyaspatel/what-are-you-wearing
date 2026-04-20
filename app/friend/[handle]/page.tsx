@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import { useRouter, useParams } from 'next/navigation'
 import { PEOPLE, PRODUCTS, Rating } from '@/lib/data'
 import ProductBottle from '@/components/ProductBottle'
@@ -10,6 +9,11 @@ const RATING_COLORS: Record<Rating, string> = {
   fine: '#C9B4A3',
   skip: '#CFC4BC',
 }
+const RATING_BG: Record<Rating, string> = {
+  must: '#F5D9D4',
+  fine: '#EDE3DA',
+  skip: '#EDE3DA',
+}
 
 export default function FriendPage() {
   const router = useRouter()
@@ -18,101 +22,22 @@ export default function FriendPage() {
 
   const person = PEOPLE.find(p => p.handle === handle) ?? PEOPLE[0]
   const ownerProducts = PRODUCTS.filter(p => person.products.includes(p.id))
-  const ownerRatingsMap: Record<string, Rating> = Object.fromEntries(
-    person.musts.map(id => [id, 'must' as Rating])
-  )
 
-  const [myRatings, setMyRatings] = useState<Record<string, Rating>>({})
-  const [sent, setSent] = useState(false)
+  // Build ratings map: musts = 'must', everything else in their bag = 'fine'
+  const ownerRatingsMap: Record<string, Rating> = {}
+  person.products.forEach(id => {
+    ownerRatingsMap[id] = person.musts.includes(id) ? 'must' : 'fine'
+  })
 
-  const setRating = (id: string, rating: Rating | null) => {
-    setMyRatings(prev => {
-      const next = { ...prev }
-      if (rating === null) delete next[id]
-      else next[id] = rating
-      return next
-    })
-  }
-
-  const mustProducts = ownerProducts.filter(p => person.musts.includes(p.id))
+  const mustProducts  = ownerProducts.filter(p => person.musts.includes(p.id))
   const otherProducts = ownerProducts.filter(p => !person.musts.includes(p.id))
 
-  const handleSend = () => {
-    setSent(true)
-  }
-
-  if (sent) {
-    return (
-      <div
-        style={{
-          minHeight: '100vh',
-          background: 'var(--bg)',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '0 28px',
-          textAlign: 'center',
-          gap: 16,
-        }}
-      >
-        <div
-          style={{
-            width: 60,
-            height: 60,
-            borderRadius: '50%',
-            background: 'var(--accent-soft)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M4 12l5 5L20 7" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </div>
-        <h2
-          style={{
-            fontFamily: 'var(--font-fraunces, serif)',
-            fontSize: 26,
-            fontWeight: 400,
-            color: 'var(--ink)',
-          }}
-        >
-          Verdict sent!
-        </h2>
-        <p style={{ fontSize: 14, color: 'var(--ink-muted)', lineHeight: 1.5 }}>
-          {person.name.split(' ')[0]} will see what you think of her picks.
-        </p>
-        <button
-          onClick={() => router.push('/')}
-          style={{
-            marginTop: 8,
-            padding: '12px 28px',
-            borderRadius: 999,
-            background: 'var(--ink)',
-            color: '#FBF6F2',
-            border: 'none',
-            fontFamily: 'var(--font-inter-tight, sans-serif)',
-            fontSize: 15,
-            fontWeight: 600,
-            letterSpacing: '0.5px',
-            textTransform: 'uppercase',
-            cursor: 'pointer',
-          }}
-        >
-          Back home
-        </button>
-      </div>
-    )
-  }
-
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 100 }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 60 }}>
       {/* Header */}
       <div
         style={{
-          padding: '62px 20px 20px',
+          padding: '52px 20px 16px',
           background: 'var(--bg)',
           borderBottom: '1px solid var(--line)',
         }}
@@ -128,8 +53,8 @@ export default function FriendPage() {
             cursor: 'pointer',
             color: 'var(--ink-muted)',
             fontFamily: 'var(--font-inter-tight, sans-serif)',
-            fontSize: 15,
-            padding: '0 0 16px',
+            fontSize: 14,
+            padding: '0 0 14px',
           }}
         >
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -139,7 +64,6 @@ export default function FriendPage() {
         </button>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-          {/* Avatar */}
           <div
             style={{
               width: 48,
@@ -172,7 +96,7 @@ export default function FriendPage() {
             <div
               style={{
                 fontFamily: 'var(--font-jetbrains-mono, monospace)',
-                fontSize: 11,
+                fontSize: 10,
                 letterSpacing: '1.2px',
                 textTransform: 'uppercase',
                 color: 'var(--ink-faint)',
@@ -183,25 +107,9 @@ export default function FriendPage() {
             </div>
           </div>
         </div>
-
-        {/* Speech bubble */}
-        <div
-          style={{
-            marginTop: 16,
-            background: 'var(--surface)',
-            border: '1px solid var(--line)',
-            borderRadius: '12px 12px 12px 4px',
-            padding: '12px 14px',
-            fontSize: 15,
-            color: 'var(--ink-muted)',
-            lineHeight: 1.5,
-          }}
-        >
-          "Here's what I'm wearing today — tell me which ones I should keep ✨"
-        </div>
       </div>
 
-      <div style={{ padding: '20px 16px 0' }}>
+      <div style={{ padding: '16px 16px 0' }}>
         {/* Must-haves */}
         {mustProducts.length > 0 && (
           <div style={{ marginBottom: 20 }}>
@@ -212,8 +120,6 @@ export default function FriendPage() {
                   key={product.id}
                   product={product}
                   ownerRating={ownerRatingsMap[product.id] ?? null}
-                  myRating={myRatings[product.id] ?? null}
-                  onRate={setRating}
                 />
               ))}
             </div>
@@ -230,52 +136,11 @@ export default function FriendPage() {
                   key={product.id}
                   product={product}
                   ownerRating={ownerRatingsMap[product.id] ?? null}
-                  myRating={myRatings[product.id] ?? null}
-                  onRate={setRating}
                 />
               ))}
             </div>
           </div>
         )}
-      </div>
-
-      {/* Sticky CTA */}
-      <div
-        style={{
-          position: 'fixed',
-          bottom: 0,
-          left: '50%',
-          transform: 'translateX(-50%)',
-          width: '100%',
-          maxWidth: 430,
-          padding: '12px 20px 32px',
-          background: 'linear-gradient(to top, var(--bg) 70%, transparent)',
-          zIndex: 30,
-        }}
-      >
-        <button
-          onClick={handleSend}
-          style={{
-            width: '100%',
-            height: 54,
-            borderRadius: 999,
-            background: 'var(--accent)',
-            color: '#fff',
-            border: 'none',
-            fontFamily: 'var(--font-inter-tight, sans-serif)',
-            fontSize: 15,
-            fontWeight: 600,
-            letterSpacing: '0.6px',
-            textTransform: 'uppercase',
-            cursor: 'pointer',
-            boxShadow: '0 4px 20px #D97A7A44',
-            transition: 'opacity 0.18s',
-          }}
-          onMouseOver={e => (e.currentTarget.style.opacity = '0.88')}
-          onMouseOut={e => (e.currentTarget.style.opacity = '1')}
-        >
-          Send {person.name.split(' ')[0]} my verdict
-        </button>
       </div>
     </div>
   )
@@ -286,7 +151,7 @@ function SectionLabel({ label }: { label: string }) {
     <div
       style={{
         fontFamily: 'var(--font-jetbrains-mono, monospace)',
-        fontSize: 11,
+        fontSize: 10,
         letterSpacing: '1.5px',
         textTransform: 'uppercase',
         color: 'var(--ink-muted)',
@@ -301,13 +166,9 @@ function SectionLabel({ label }: { label: string }) {
 function FriendCard({
   product,
   ownerRating,
-  myRating,
-  onRate,
 }: {
   product: { id: string; brand: string; name: string; shade: string | null; shadeHex: string | null; price: string; bottle: import('@/lib/data').BottleType; bottleColor: string }
   ownerRating: Rating | null
-  myRating: Rating | null
-  onRate: (id: string, rating: Rating | null) => void
 }) {
   return (
     <div
@@ -319,7 +180,7 @@ function FriendCard({
         overflow: 'hidden',
       }}
     >
-      {/* Bottle with owner badge */}
+      {/* Bottle */}
       <div style={{ position: 'relative', flexShrink: 0 }}>
         <ProductBottle
           type={product.bottle}
@@ -327,21 +188,6 @@ function FriendCard({
           shade={product.shadeHex}
           uid={`friend-${product.id}`}
         />
-        {ownerRating && (
-          <div
-            style={{
-              position: 'absolute',
-              top: 6,
-              left: 6,
-              width: 10,
-              height: 10,
-              borderRadius: '50%',
-              background: RATING_COLORS[ownerRating],
-              border: '1.5px solid rgba(255,255,255,0.9)',
-              boxShadow: '0 1px 4px rgba(0,0,0,0.18)',
-            }}
-          />
-        )}
       </div>
 
       {/* Info */}
@@ -358,7 +204,7 @@ function FriendCard({
         <span
           style={{
             fontFamily: 'var(--font-jetbrains-mono, monospace)',
-            fontSize: 11,
+            fontSize: 9,
             letterSpacing: '1.5px',
             textTransform: 'uppercase',
             color: 'var(--ink-muted)',
@@ -366,7 +212,7 @@ function FriendCard({
         >
           {product.brand}
         </span>
-        <span style={{ fontSize: 15, fontWeight: 500, color: 'var(--ink)', lineHeight: 1.3 }}>
+        <span style={{ fontSize: 13, fontWeight: 500, color: 'var(--ink)', lineHeight: 1.3 }}>
           {product.name}
         </span>
         {product.shade && (
@@ -383,52 +229,48 @@ function FriendCard({
                 }}
               />
             )}
+            <span style={{ fontSize: 11, color: 'var(--ink-muted)' }}>{product.shade}</span>
+          </div>
+        )}
+        <span style={{ fontSize: 11, color: 'var(--ink-faint)' }}>{product.price}</span>
+
+        {/* Her rating badge */}
+        {ownerRating && (
+          <div
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 4,
+              marginTop: 5,
+              padding: '3px 8px',
+              borderRadius: 999,
+              background: RATING_BG[ownerRating],
+              alignSelf: 'flex-start',
+            }}
+          >
+            <div
+              style={{
+                width: 5,
+                height: 5,
+                borderRadius: '50%',
+                background: RATING_COLORS[ownerRating],
+                flexShrink: 0,
+              }}
+            />
             <span
               style={{
-                fontSize: 13,
-                color: 'var(--ink-muted)',
+                fontFamily: 'var(--font-jetbrains-mono, monospace)',
+                fontSize: 9,
+                letterSpacing: '0.8px',
+                textTransform: 'uppercase',
+                color: RATING_COLORS[ownerRating],
+                fontWeight: 600,
               }}
             >
-              {product.shade}
+              {ownerRating}
             </span>
           </div>
         )}
-        <span style={{ fontSize: 13, color: 'var(--ink-faint)' }}>{product.price}</span>
-
-        {/* Friend's own rating pills */}
-        <div style={{ display: 'flex', gap: 5, marginTop: 5 }}>
-          {(['skip', 'fine', 'must'] as Rating[]).map(r => {
-            const active = myRating === r
-            return (
-              <button
-                key={r}
-                onClick={() => onRate(product.id, active ? null : r)}
-                style={{
-                  fontFamily: 'var(--font-inter-tight, sans-serif)',
-                  fontSize: 12,
-                  fontWeight: 600,
-                  letterSpacing: '0.4px',
-                  textTransform: 'uppercase',
-                  padding: '4px 9px',
-                  borderRadius: 999,
-                  border: active ? 'none' : '1px solid var(--line)',
-                  background: active
-                    ? r === 'must' ? '#D97A7A' : r === 'fine' ? '#C9B4A3' : '#CFC4BC'
-                    : 'transparent',
-                  color: active
-                    ? r === 'must' ? '#fff' : 'var(--ink)'
-                    : 'var(--ink-muted)',
-                  cursor: 'pointer',
-                  transition: 'all 0.18s',
-                  boxShadow: active && r === 'must' ? '0 2px 8px #D97A7A55' : 'none',
-                  flexShrink: 0,
-                }}
-              >
-                {r}
-              </button>
-            )
-          })}
-        </div>
       </div>
     </div>
   )
