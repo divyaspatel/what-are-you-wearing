@@ -9,6 +9,7 @@ const NAV = [
   { path: '/mybag',    label: 'My Bag',   Icon: BagIcon      },
   { path: '/shopping', label: 'Cart',     Icon: CartIcon     },
   { path: '/insights', label: 'Insights', Icon: InsightsIcon },
+  { path: '/feedback', label: 'Feedback', Icon: FeedbackIcon },
 ]
 
 // step 4 = everyone tab pulses, step 6 = insights tab pulses
@@ -82,8 +83,8 @@ export default function BottomNav() {
             <span
               style={{
                 fontFamily: 'var(--font-jetbrains-mono, monospace)',
-                fontSize: 10,
-                letterSpacing: '0.6px',
+                fontSize: 9,
+                letterSpacing: '0.4px',
                 textTransform: 'uppercase',
                 fontWeight: active ? 600 : 400,
               }}
@@ -146,6 +147,20 @@ function InsightsIcon({ active }: { active: boolean }) {
         strokeLinejoin="round"
         fill={active ? 'currentColor' : 'none'}
         fillOpacity={active ? 0.15 : 0}
+      />
+    </svg>
+  )
+}
+
+function FeedbackIcon({ active }: { active: boolean }) {
+  return (
+    <svg width="19" height="19" viewBox="0 0 20 20" fill="none">
+      <path d="M3 4h14a1 1 0 011 1v8a1 1 0 01-1 1H6l-4 3V5a1 1 0 011-1z"
+        stroke="currentColor"
+        strokeWidth={active ? 1.8 : 1.4}
+        strokeLinejoin="round"
+        fill={active ? 'currentColor' : 'none'}
+        fillOpacity={active ? 0.12 : 0}
       />
     </svg>
   )
