@@ -20,6 +20,7 @@ interface AppContextType {
   toggleConcern: (c: string) => void
   onboardingStep: number  // 0–6, -1 = done
   advanceOnboarding: () => void
+  resetOnboarding: () => void
 }
 
 const AppContext = createContext<AppContextType>({
@@ -39,6 +40,7 @@ const AppContext = createContext<AppContextType>({
   toggleConcern: () => {},
   onboardingStep: 0,
   advanceOnboarding: () => {},
+  resetOnboarding: () => {},
 })
 
 export function AppProvider({ children }: { children: ReactNode }) {
@@ -83,6 +85,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const advanceOnboarding = () =>
     setOnboarding(prev => (prev >= 6 ? -1 : prev + 1))
 
+  const resetOnboarding = () => setOnboarding(0)
+
   return (
     <AppContext.Provider value={{
       ratings, setRating,
@@ -90,7 +94,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       cartItems, addToCart, removeFromCart, isInCart, isInBag, addToBag,
       skinType, setSkinType,
       concerns, toggleConcern,
-      onboardingStep, advanceOnboarding,
+      onboardingStep, advanceOnboarding, resetOnboarding,
     }}>
       {children}
     </AppContext.Provider>
