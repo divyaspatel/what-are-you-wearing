@@ -108,8 +108,10 @@ export default function FeedbackPage() {
           <iframe
             src="https://docs.google.com/forms/d/e/1FAIpQLSeF74bY9dLxuovnQUlOj5HGRiAJyGcgIQutOpIxhg2bPYZrrg/viewform?embedded=true"
             width="100%"
-            height="640"
+            height="1233"
             frameBorder="0"
+            marginHeight={0}
+            marginWidth={0}
             style={{ display: 'block' }}
             title="Feedback form"
           >
