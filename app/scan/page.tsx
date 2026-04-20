@@ -114,7 +114,7 @@ export default function ScanPage() {
             position: 'relative',
             borderRadius: 16,
             overflow: 'hidden',
-            background: phase === 'idle' ? 'transparent' : '#0A0A12',
+            background: phase === 'idle' ? 'var(--line)' : '#0A0A12',
           }}
         >
           {/* Dashed border (idle) */}
@@ -139,35 +139,36 @@ export default function ScanPage() {
             </>
           )}
 
-          {/* Idle center hint */}
+          {/* Vanity photo (idle) — padded inside the frame */}
           {phase === 'idle' && (
             <div
               style={{
                 position: 'absolute',
-                inset: 0,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: 10,
+                inset: 12,
+                borderRadius: 10,
+                overflow: 'hidden',
               }}
             >
-              <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-                <circle cx="18" cy="18" r="17" stroke="var(--line)" strokeWidth="1.5" strokeDasharray="4 3" />
-                <circle cx="18" cy="18" r="6" stroke="var(--ink-faint)" strokeWidth="1.5" />
-                <circle cx="18" cy="18" r="2" fill="var(--ink-faint)" />
-              </svg>
-              <span
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/vanity.jpg"
+                alt="Vanity flat lay"
                 style={{
-                  fontFamily: 'var(--font-jetbrains-mono, monospace)',
-                  fontSize: 12,
-                  letterSpacing: '1.2px',
-                  textTransform: 'uppercase',
-                  color: 'var(--ink-faint)',
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  objectPosition: 'center',
+                  display: 'block',
                 }}
-              >
-                Point at your vanity
-              </span>
+              />
+              {/* Subtle dark overlay so corner brackets stay readable */}
+              <div
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  background: 'rgba(0,0,0,0.08)',
+                }}
+              />
             </div>
           )}
 
