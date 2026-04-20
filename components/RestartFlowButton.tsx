@@ -8,7 +8,7 @@ export default function RestartFlowButton() {
   const router = useRouter()
   const { resetOnboarding } = useApp()
 
-  if (pathname.startsWith('/friend')) return null
+  if (pathname === '/' || pathname.startsWith('/friend')) return null
 
   return (
     <div
@@ -22,7 +22,7 @@ export default function RestartFlowButton() {
         zIndex: 200,
         display: 'flex',
         justifyContent: 'flex-end',
-        padding: '10px 16px 0',
+        padding: '12px 16px 0',
         pointerEvents: 'none',
       }}
     >
@@ -34,8 +34,8 @@ export default function RestartFlowButton() {
         style={{
           pointerEvents: 'auto',
           background: '#EDE5DC',
-          border: '1px solid #DDD0C5',
-          color: '#D4C5BA',
+          border: '1px solid #CDBFB4',
+          color: '#B8A89F',
           borderRadius: 999,
           padding: '5px 12px',
           fontSize: 10,
