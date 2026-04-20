@@ -33,7 +33,7 @@ export default function BottomNav() {
         background: 'var(--surface)',
         borderTop: '1px solid var(--line)',
         display: 'flex',
-        zIndex: 50,
+        zIndex: 100,
         paddingBottom: 'env(safe-area-inset-bottom, 0px)',
       }}
     >

@@ -32,12 +32,12 @@ export const metadata: Metadata = {
 const GOLD_PULSE_CSS = `
   @keyframes goldPulse {
     0%, 100% {
-      outline: 3px solid #C9A227;
-      outline-offset: 2px;
+      outline: 5px solid #C9A227;
+      outline-offset: 3px;
     }
     50% {
-      outline: 4px solid #E8C040;
-      outline-offset: 4px;
+      outline: 6px solid #E8C040;
+      outline-offset: 5px;
     }
   }
   .gold-pulse {

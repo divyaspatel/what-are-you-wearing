@@ -43,7 +43,7 @@ export default function MyBagPage() {
       <div
         style={{
           paddingTop: 62,
-          padding: '62px 20px 16px',
+          padding: '52px 20px 12px',
           background: 'var(--bg)',
           borderBottom: '1px solid var(--line)',
         }}
@@ -63,7 +63,7 @@ export default function MyBagPage() {
               My make up bag
             </h1>
             {/* Description */}
-            <p style={{ fontSize: 15, color: 'var(--ink-muted)', lineHeight: 1.45, maxWidth: 240 }}>
+            <p style={{ fontSize: 13, color: 'var(--ink-muted)', lineHeight: 1.45, maxWidth: 240 }}>
               Keep track of all the products you&apos;ve tried.
             </p>
           </div>
@@ -105,7 +105,7 @@ export default function MyBagPage() {
       </div>
 
       {/* Filters */}
-      <div style={{ display: 'flex', gap: 7, padding: '14px 16px 0' }}>
+      <div style={{ display: 'flex', gap: 7, padding: '10px 16px 0' }}>
         <FilterPill label="All"  count={totalCount}  active={filter === 'all'}  onClick={() => setFilter('all')}  color="var(--ink)"  bg="var(--line)" />
         <FilterPill label="Must" count={mustCount}  active={filter === 'must'} onClick={() => setFilter(filter === 'must'  ? 'all' : 'must')}  color="#D97A7A" bg="#F5D9D4" />
         <FilterPill label="Fine" count={fineCount}  active={filter === 'fine'} onClick={() => setFilter(filter === 'fine'  ? 'all' : 'fine')}  color="#8A7060" bg="#EDE3DA" />
@@ -113,12 +113,12 @@ export default function MyBagPage() {
       </div>
 
       {/* Add a product button */}
-      <div style={{ padding: '12px 16px 4px' }}>
+      <div style={{ padding: '8px 16px 4px' }}>
         <button
           onClick={() => setShowAddModal(true)}
           style={{
             width: '100%',
-            padding: '11px 16px',
+            padding: '9px 16px',
             borderRadius: 12,
             border: '1.5px dashed var(--line)',
             background: 'transparent',
@@ -129,7 +129,7 @@ export default function MyBagPage() {
             gap: 7,
             color: 'var(--ink-muted)',
             fontFamily: 'var(--font-inter-tight, sans-serif)',
-            fontSize: 15,
+            fontSize: 13,
             fontWeight: 500,
             transition: 'border-color 0.15s, color 0.15s',
           }}
@@ -524,10 +524,10 @@ function BagCard({
         </div>
 
         <div style={{ flex: 1, padding: '11px 12px 11px 8px', display: 'flex', flexDirection: 'column', gap: 3, minWidth: 0 }}>
-          <span style={{ fontFamily: 'var(--font-jetbrains-mono, monospace)', fontSize: 11, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--ink-muted)' }}>
+          <span style={{ fontFamily: 'var(--font-jetbrains-mono, monospace)', fontSize: 9, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--ink-muted)' }}>
             {product.brand}
           </span>
-          <span style={{ fontSize: 15, fontWeight: 500, color: 'var(--ink)', lineHeight: 1.3 }}>
+          <span style={{ fontSize: 13, fontWeight: 500, color: 'var(--ink)', lineHeight: 1.3 }}>
             {product.name}
           </span>
           {product.shade && (
@@ -535,10 +535,10 @@ function BagCard({
               {product.shadeHex && (
                 <div style={{ width: 7, height: 7, borderRadius: '50%', background: product.shadeHex, border: '1px solid rgba(0,0,0,0.08)', flexShrink: 0 }} />
               )}
-              <span style={{ fontSize: 13, color: 'var(--ink-muted)' }}>{product.shade}</span>
+              <span style={{ fontSize: 11, color: 'var(--ink-muted)' }}>{product.shade}</span>
             </div>
           )}
-          <span style={{ fontSize: 13, color: 'var(--ink-faint)' }}>{product.price}</span>
+          <span style={{ fontSize: 11, color: 'var(--ink-faint)' }}>{product.price}</span>
 
           {/* Rating pills */}
           <div style={{ display: 'flex', gap: 5, marginTop: 5 }}>
@@ -552,7 +552,7 @@ function BagCard({
                   className={isMustPulse ? 'gold-pulse' : ''}
                   style={{
                     fontFamily: 'var(--font-inter-tight, sans-serif)',
-                    fontSize: 12,
+                    fontSize: 10,
                     fontWeight: 600,
                     letterSpacing: '0.4px',
                     textTransform: 'uppercase',

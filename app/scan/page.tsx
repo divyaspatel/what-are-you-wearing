@@ -51,15 +51,15 @@ export default function ScanPage() {
         background: 'var(--bg)',
         display: 'flex',
         flexDirection: 'column',
-        paddingTop: 62,
-      paddingBottom: 80,
+        paddingTop: 52,
+        paddingBottom: 80,
       }}
     >
       {/* Header */}
-      <div style={{ padding: '0 24px 24px' }}>
+      <div style={{ padding: '0 24px 16px' }}>
         <p
           style={{
-            fontSize: 24,
+            fontSize: 22,
             fontFamily: 'var(--font-fraunces, serif)',
             fontWeight: 400,
             color: 'var(--ink)',
@@ -255,7 +255,7 @@ export default function ScanPage() {
       </div>
 
       {/* Buttons */}
-      <div style={{ padding: '20px 24px 48px', display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <div style={{ padding: '16px 24px 24px', display: 'flex', flexDirection: 'column', gap: 10 }}>
         <button
           onClick={startScan}
           disabled={phase !== 'idle'}

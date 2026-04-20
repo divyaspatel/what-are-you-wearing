@@ -16,12 +16,12 @@ export default function EveryonePage() {
       {/* Header */}
       <div
         style={{
-          paddingTop: 62,
+          paddingTop: 52,
           background: 'var(--bg)',
           borderBottom: '1px solid var(--line)',
         }}
       >
-        <div style={{ padding: '0 20px 12px' }}>
+        <div style={{ padding: '0 20px 8px' }}>
           <h1
             style={{
               fontFamily: 'var(--font-fraunces, serif)',
@@ -102,7 +102,7 @@ function PeopleTab() {
   const [expanded, setExpanded] = useState<string | null>(null)
 
   return (
-    <div style={{ padding: '16px 16px 0' }}>
+    <div style={{ padding: '10px 16px 0' }}>
       <GroupLabel label="Friends" />
       {friends.map(p => (
         <PersonRow
@@ -182,8 +182,8 @@ function PersonRow({
 
         {/* Info */}
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--ink)' }}>{person.name}</div>
-          <div style={{ fontSize: 14, color: 'var(--ink-muted)', marginTop: 1 }}>{person.note}</div>
+          <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--ink)' }}>{person.name}</div>
+          <div style={{ fontSize: 12, color: 'var(--ink-muted)', marginTop: 1 }}>{person.note}</div>
         </div>
 
         {/* Actions */}
