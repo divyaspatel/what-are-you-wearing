@@ -12,7 +12,7 @@ export default function FeedbackPage() {
       }}
     >
       {/* Header */}
-      <div style={{ padding: '62px 24px 20px' }}>
+      <div style={{ padding: '62px 24px 16px' }}>
         <h1
           style={{
             fontFamily: 'var(--font-fraunces, serif)',
@@ -23,26 +23,33 @@ export default function FeedbackPage() {
             lineHeight: 1.3,
           }}
         >
-          From the <em>maker</em>
+          Hey, I'm Divya &amp; I built this.
         </h1>
       </div>
 
       {/* Photo + intro card */}
-      <div style={{ padding: '0 20px 24px' }}>
+      <div style={{ padding: '0 20px 20px' }}>
         <div
           style={{
             background: 'var(--surface)',
             borderRadius: 20,
             overflow: 'hidden',
             border: '1px solid var(--line)',
+            display: 'flex',
+            gap: 14,
+            padding: 14,
+            alignItems: 'center',
           }}
         >
-          {/* Photo */}
+          {/* Photo — small */}
           <div
             style={{
               position: 'relative',
-              width: '100%',
-              aspectRatio: '4/3',
+              width: 72,
+              height: 88,
+              flexShrink: 0,
+              borderRadius: 12,
+              overflow: 'hidden',
               background: '#E8C84A22',
             }}
           >
@@ -56,41 +63,16 @@ export default function FeedbackPage() {
           </div>
 
           {/* Text */}
-          <div style={{ padding: '20px 20px 22px' }}>
-            <p
-              style={{
-                fontFamily: 'var(--font-fraunces, serif)',
-                fontSize: 13,
-                fontWeight: 400,
-                color: 'var(--ink-muted)',
-                letterSpacing: '0.5px',
-                textTransform: 'uppercase',
-                marginBottom: 8,
-              }}
-            >
-              Hi, I'm Divya Patel
-            </p>
+          <div style={{ flex: 1 }}>
             <p
               style={{
                 fontFamily: 'var(--font-inter-tight, system-ui)',
-                fontSize: 15,
-                lineHeight: 1.65,
+                fontSize: 14,
+                lineHeight: 1.6,
                 color: 'var(--ink)',
               }}
             >
-              Every Sephora sale, I buy what my makeup guru friends tell me to. I needed this app, so I made it.
-            </p>
-            <p
-              style={{
-                fontFamily: 'var(--font-fraunces, serif)',
-                fontStyle: 'italic',
-                fontSize: 17,
-                lineHeight: 1.5,
-                color: 'var(--accent-deep)',
-                marginTop: 12,
-              }}
-            >
-              Would you find this helpful too?
+              Every Sephora sale, I buy what my makeup guru friends tell me to. I needed this app, so I made it. Would you find this helpful too?
             </p>
           </div>
         </div>
@@ -105,7 +87,7 @@ export default function FeedbackPage() {
             fontSize: 9,
             letterSpacing: '1.5px',
             textTransform: 'uppercase',
-            color: 'var(--ink-faint)',
+            color: 'var(--accent-deep)',
           }}
         >
           Leave feedback
