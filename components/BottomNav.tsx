@@ -12,8 +12,8 @@ const NAV = [
   { path: '/feedback', label: 'Feedback', Icon: FeedbackIcon },
 ]
 
-// step 4 = everyone tab pulses, step 6 = insights tab pulses
-const ONBOARDING_PULSE: Record<number, string> = { 4: '/everyone', 6: '/insights' }
+// step 4 = everyone tab pulses, step 6 = insights tab pulses, step 7 = feedback tab pulses
+const ONBOARDING_PULSE: Record<number, string> = { 4: '/everyone', 6: '/insights', 7: '/feedback' }
 
 export default function BottomNav() {
   const pathname = usePathname()

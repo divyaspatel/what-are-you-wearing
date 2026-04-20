@@ -83,7 +83,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     )
 
   const advanceOnboarding = () =>
-    setOnboarding(prev => (prev >= 6 ? -1 : prev + 1))
+    setOnboarding(prev => (prev >= 7 ? -1 : prev + 1))
 
   const resetOnboarding = () => setOnboarding(0)
 
