@@ -95,6 +95,27 @@ export default function FeedbackPage() {
         <div style={{ flex: 1, height: 1, background: 'var(--line)' }} />
       </div>
 
+      {/* Quick feedback link */}
+      <div style={{ padding: '0 20px 16px', textAlign: 'center' }}>
+        <span
+          style={{
+            fontFamily: 'var(--font-inter-tight, system-ui)',
+            fontSize: 13,
+            color: 'var(--inkMuted)',
+          }}
+        >
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSeF74bY9dLxuovnQUlOj5HGRiAJyGcgIQutOpIxhg2bPYZrrg/viewform?usp=header"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: 'var(--accent-deep)', textDecoration: 'underline' }}
+          >
+            Quick feedback form
+          </a>
+          , I promise it&apos;s super fast!
+        </span>
+      </div>
+
       {/* Embedded Google Form */}
       <div style={{ padding: '0 20px' }}>
         <div
